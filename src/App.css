@@ -1,0 +1,51 @@
+body {
+  font-size: 1rem;
+  padding: 2rem;
+  background-color: lightgray;
+}
+h2{
+  text-align: center;
+}
+
+.search {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+
+.search input {
+  width: 40%;
+  border: none;
+  margin: 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.btn{
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background-color: #0f9;
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn:hover{
+  background: #00b36b;
+  color: black;
+}
+
+.book-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-radius: 3px;
+  padding: 0 1rem;
+  margin: .5em 0;
+  background-color:#00b36b;
+  opacity: 90%;
+  color: white;
+}

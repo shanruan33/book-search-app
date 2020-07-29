@@ -32,15 +32,47 @@ function App() {
 
   return (
     <>
-    {/* search form */}
+      {/* search form */}
       <div className="search">
         <input className="search-bar" type="text" placeholder="Search book title..." onChange={updateSearch} />
         <button className="btn search-btn" onClick={getSearch} >Search</button>
       </div>
-    {/* search results */}
+      {/* search results */}
+      <div className="book-list">
+        <div className="">
+          {(query.length === 0 || !books) ? <h2>Please enter valid value.</h2> :
+            books.map(book => (
+              <Book
+                key={book.isbn}
+                title={book.titleweb}
+                author={book.author}
+                price={book.pricecanada}
+                format={book.formatname}
+              />
+            ))}
+        </div>
+      </div>
     </>
   )
 
 }
+
+// create Book Component
+const Book = ({ title, author, price, format, flapcopy, bio }) => {
+  return (
+    <div className="book">
+      <div className="book-summary" >
+        <h3 className="title">
+          {title}
+        </h3>
+        <p>By: {author}</p>
+        <p>{format}</p>
+        <p>
+          <strong>$</strong>{price}
+        </p>
+      </div>
+    </div>
+  )
+};
 
 export default App;
