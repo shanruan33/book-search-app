@@ -38,7 +38,7 @@ h2{
   color: black;
 }
 
-.save-btn {
+.save-btn, .delete-btn {
   color: white;
   position: absolute;
   top: 1.25rem;
@@ -61,6 +61,10 @@ h2{
 
 .book-summary:hover{
   cursor: pointer;
+}
+/* ////// Task 6 */
+.saved-books>.book>.book-summary {
+  background-color:#d38818;
 }
 
 .collapse {

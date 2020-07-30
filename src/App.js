@@ -6,6 +6,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState('Christmas');
   const [search, setSearch] = useState("");
+  // const [savedBooks, setSavedBooks] = useState([]);
 
   // recieve input from form
   const updateSearch = e => {
@@ -30,6 +31,18 @@ function App() {
     }).catch(err => console.log(err));
   }, [query]);
 
+  ///////// Task 6: fetch data from database
+  // useEffect(() => {
+  //   getSavedBooks();
+  // }, []);
+  // const getSavedBooks = async () => {
+  //   await axios.get('http://localhost:8080/api/v1/book').then(res => {
+  //     console.log(res);
+  //     res = res.data;
+  //     setSavedBooks(res);
+  //   }).catch(err => console.log(err));
+  // }
+
   return (
     <>
       {/* search form */}
@@ -43,16 +56,37 @@ function App() {
           {(query.length === 0 || !books) ? <h2>Please enter valid value.</h2> :
             books.map(book => (
               <Book
-                key={book.isbn}
+                key={book.index}
                 title={book.titleweb}
                 author={book.author}
                 price={book.pricecanada}
                 format={book.formatname}
                 flapcopy={book.flapcopy}
                 bio={book.authorbio}
+                isbn={book.isbn}
+                saved={false}
+                id={""}
               />
             ))}
         </div>
+        {/* ///////// Task 6: show saved books*/}
+        {/* <div className="saved-books" >
+          {!savedBooks ? <h2>You don't have saved books.</h2> :
+            savedBooks.map(book => (
+              <Book
+                key={book._id}
+                title={book.title}
+                author={book.author}
+                price={book.price}
+                format={book.bookFformat}
+                flapcopy={book.flapcopy}
+                bio={book.authorBio}
+                isbn={book.isbn}
+                saved={true}
+                id={book._id}
+              />
+            ))}
+        </div> */}
       </div>
     </>
   )
@@ -60,7 +94,7 @@ function App() {
 }
 
 // create Book Component
-const Book = ({ title, author, price, format, flapcopy, bio }) => {
+const Book = ({ title, author, price, format, flapcopy, bio, isbn, saved, id }) => {
   // click event for showing details
   const collapse = (e) => {
     e.preventDefault();
@@ -74,6 +108,30 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
       }
     }
   }
+
+  ///////// Task 5: save books to DB
+  // const addBook = (e) => {
+  //   axios.post('http://localhost:8080/api/v1/book', {
+  //     "title": title,
+  //     "author": author,
+  //     "price": price,
+  //     "bookFormat": format,
+  //     "flapcopy": flapcopy,
+  //     "authorBio": bio,
+  //     "isbn": isbn
+  //   }).then(() => {
+  //     console.log("data sent");
+  //   }).catch(err => console.log(err));
+  //   console.log(e.target);
+  // };
+  ///////// Task 7: delete books to DB
+  // const deleteBook = (e) => {
+  //   console.log(id);
+  //   axios.delete(`http://localhost:8080/api/v1/book/${id}`).then(() => {
+  //     console.log("data deleted");
+  //   }).catch(err => console.log(err));
+  //   console.log(e.target);
+  // };
   return (
     <div className="book">
       <div className="book-summary" onClick={collapse}>
@@ -85,7 +143,6 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
         <p className="price">
           <strong>$</strong>{price}
         </p>
-
       </div>
       <div className="collapse">
         <h4>Introduction</h4>
@@ -93,7 +150,12 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
         <h4>About Author</h4>
         <p>{bio}</p>
       </div>
-      <div className="save-btn"><span>+</span></div>
+      {/* ////// Task 5 & 7 */}
+      {saved ? <div className="delete-btn"
+      // onClick={deleteBook}
+      ><span>-</span></div> : <div className="save-btn"
+      // onClick={addBook}
+      ><span>+</span></div>}
       {/* function insert here (eg. axios.post()) for later connect to backend */}
     </div>
   )
