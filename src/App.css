@@ -38,12 +38,21 @@ h2{
   color: black;
 }
 
+.save-btn {
+  color: white;
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;  
+}
+
+
+
 .book-summary {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   border-radius: 3px;
-  padding: 0 1rem;
+  padding: 0 3rem 0 1rem;
   margin: .5em 0;
   background-color:#00b36b;
   opacity: 90%;
@@ -67,3 +76,12 @@ h2{
   padding: 1rem;
   pointer-events: none;
 }
+
+.book {
+  position: relative;
+} 
+
+p .price {
+  padding: 0, 2rem;
+}
+

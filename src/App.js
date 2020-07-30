@@ -75,22 +75,25 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
   }
   return (
     <div className="book">
+
       <div className="book-summary" onClick={collapse}>
         <h3 className="title">
           {title}
         </h3>
         <p>By: {author}</p>
         <p>{format}</p>
-        <p>
+        <p className="price">
           <strong>$</strong>{price}
         </p>
+        <div className="collapse">
+          <h4>Introduction</h4>
+          <p>{flapcopy}</p>
+          <h4>About Author</h4>
+          <p>{bio}</p>
+        </div>
       </div>
-      <div className="collapse">
-        <h4>Introduction</h4>
-        <p>{flapcopy}</p>
-        <h4>About Author</h4>
-        <p>{bio}</p>
-      </div>
+
+      <div className="save-btn"><span>+</span></div>
     </div>
   )
 };
