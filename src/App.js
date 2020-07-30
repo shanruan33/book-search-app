@@ -64,6 +64,7 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
   // click event for showing details
   const collapse = (e) => {
     e.preventDefault();
+    console.log(e.target.className);
     if (e.target.className === 'book-summary') {
       var content = e.target.nextElementSibling;
       if (content.style.display === "block") {
@@ -75,7 +76,6 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
   }
   return (
     <div className="book">
-
       <div className="book-summary" onClick={collapse}>
         <h3 className="title">
           {title}
@@ -85,15 +85,16 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
         <p className="price">
           <strong>$</strong>{price}
         </p>
-        <div className="collapse">
-          <h4>Introduction</h4>
-          <p>{flapcopy}</p>
-          <h4>About Author</h4>
-          <p>{bio}</p>
-        </div>
-      </div>
 
+      </div>
+      <div className="collapse">
+        <h4>Introduction</h4>
+        <p>{flapcopy}</p>
+        <h4>About Author</h4>
+        <p>{bio}</p>
+      </div>
       <div className="save-btn"><span>+</span></div>
+      {/* function insert here (eg. axios.post()) for later connect to backend */}
     </div>
   )
 };
