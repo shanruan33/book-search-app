@@ -48,6 +48,8 @@ function App() {
                 author={book.author}
                 price={book.pricecanada}
                 format={book.formatname}
+                flapcopy={book.flapcopy}
+                bio={book.authorbio}
               />
             ))}
         </div>
@@ -59,9 +61,21 @@ function App() {
 
 // create Book Component
 const Book = ({ title, author, price, format, flapcopy, bio }) => {
+  // click event for showing details
+  const collapse = (e) => {
+    e.preventDefault();
+    if (e.target.className === 'book-summary') {
+      var content = e.target.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    }
+  }
   return (
     <div className="book">
-      <div className="book-summary" >
+      <div className="book-summary" onClick={collapse}>
         <h3 className="title">
           {title}
         </h3>
@@ -70,6 +84,12 @@ const Book = ({ title, author, price, format, flapcopy, bio }) => {
         <p>
           <strong>$</strong>{price}
         </p>
+      </div>
+      <div className="collapse">
+        <h4>Introduction</h4>
+        <p>{flapcopy}</p>
+        <h4>About Author</h4>
+        <p>{bio}</p>
       </div>
     </div>
   )

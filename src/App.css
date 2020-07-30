@@ -49,3 +49,21 @@ h2{
   opacity: 90%;
   color: white;
 }
+
+.book-summary:hover{
+  cursor: pointer;
+}
+
+.collapse {
+  display: none;
+  margin: 0 1rem 1rem 1rem;
+  background-color: white;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.collapse p, h4 {
+  margin: 0;
+  padding: 1rem;
+  pointer-events: none;
+}
