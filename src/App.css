@@ -44,8 +44,10 @@ h2{
   top: 1.25rem;
   right: 1rem;  
 }
-
-
+/* ////// Task 6 */
+/* .clicked {
+  display: none;
+} */
 
 .book-summary {
   display: flex;
@@ -63,9 +65,9 @@ h2{
   cursor: pointer;
 }
 /* ////// Task 6 */
-.saved-books>.book>.book-summary {
+/* .saved-books>.book>.book-summary {
   background-color:#d38818;
-}
+} */
 
 .collapse {
   display: none;

@@ -7,6 +7,7 @@ function App() {
   const [query, setQuery] = useState('Christmas');
   const [search, setSearch] = useState("");
   // const [savedBooks, setSavedBooks] = useState([]);
+  // const [isbn, setIsbn] = useState(""); 
 
   // recieve input from form
   const updateSearch = e => {
@@ -40,7 +41,26 @@ function App() {
   //     console.log(res);
   //     res = res.data;
   //     setSavedBooks(res);
+  //     console.log(savedBooks);
   //   }).catch(err => console.log(err));
+  // }
+  // const handleAdd = isbn => {     //Other option:[...savedBooks, tempBook] => setSavedBooks([...new Set(tempBooks)])
+  //   let existedBook = [...savedBooks];
+  //   existedBook = existedBook.find(book => book.isbn === isbn);
+  //   if (!existedBook) {
+  //     setIsbn(isbn);
+  //     let tempBook = [...books];
+  //     tempBook = tempBook.find(book => book.isbn === isbn);
+  //     let updatedSavedBooks = [...savedBooks, tempBook]
+  //     setSavedBooks(updatedSavedBooks);
+  //     console.log(updatedSavedBooks);
+  //   }
+  // }
+  // const handleDelete = isbn => {
+  //   setIsbn(isbn);
+  //   let savedbooks = [...savedBooks];
+  //   savedbooks = savedbooks.filter(book => book.isbn !== isbn);
+  //   setSavedBooks(savedbooks);
   // }
 
   return (
@@ -66,6 +86,7 @@ function App() {
                 isbn={book.isbn}
                 saved={false}
                 id={""}
+                // onAdd={handleAdd}
               />
             ))}
         </div>
@@ -75,15 +96,16 @@ function App() {
             savedBooks.map(book => (
               <Book
                 key={book._id}
-                title={book.title}
+                title={book.titleweb}
                 author={book.author}
-                price={book.price}
-                format={book.bookFformat}
+                price={book.pricecanada}
+                format={book.formatname}
                 flapcopy={book.flapcopy}
-                bio={book.authorBio}
+                bio={book.authorbio}
                 isbn={book.isbn}
                 saved={true}
                 id={book._id}
+                onDelete={handleDelete}
               />
             ))}
         </div> */}
@@ -94,7 +116,7 @@ function App() {
 }
 
 // create Book Component
-const Book = ({ title, author, price, format, flapcopy, bio, isbn, saved, id }) => {
+const Book = ({ title, author, price, format, flapcopy, bio, isbn, saved, id, onDelete, onAdd }) => {
   // click event for showing details
   const collapse = (e) => {
     e.preventDefault();
@@ -111,26 +133,29 @@ const Book = ({ title, author, price, format, flapcopy, bio, isbn, saved, id }) 
 
   ///////// Task 5: save books to DB
   // const addBook = (e) => {
+  //   e.preventDefault();
   //   axios.post('http://localhost:8080/api/v1/book', {
-  //     "title": title,
+  //     "titleweb": title,
   //     "author": author,
-  //     "price": price,
-  //     "bookFormat": format,
+  //     "pricecanada": price,
+  //     "formatname": format,
   //     "flapcopy": flapcopy,
-  //     "authorBio": bio,
+  //     "authorbio": bio,
   //     "isbn": isbn
   //   }).then(() => {
   //     console.log("data sent");
   //   }).catch(err => console.log(err));
+  //   onAdd(e.target.id);
   //   console.log(e.target);
+  //   e.target.className = 'clicked';
   // };
-  ///////// Task 7: delete books to DB
+  // ///////// Task 7: delete books to DB
   // const deleteBook = (e) => {
-  //   console.log(id);
+  //   e.preventDefault();
   //   axios.delete(`http://localhost:8080/api/v1/book/${id}`).then(() => {
   //     console.log("data deleted");
   //   }).catch(err => console.log(err));
-  //   console.log(e.target);
+  //   onDelete(e.target.id);
   // };
   return (
     <div className="book">
@@ -152,10 +177,10 @@ const Book = ({ title, author, price, format, flapcopy, bio, isbn, saved, id }) 
       </div>
       {/* ////// Task 5 & 7 */}
       {saved ? <div className="delete-btn"
-      // onClick={deleteBook}
-      ><span>-</span></div> : <div className="save-btn"
-      // onClick={addBook}
-      ><span>+</span></div>}
+        // onClick={deleteBook}
+      ><span id={isbn}>-</span></div> : <div className="save-btn"
+        // onClick={addBook}
+      ><span id={isbn}>+</span></div>}
       {/* function insert here (eg. axios.post()) for later connect to backend */}
     </div>
   )
